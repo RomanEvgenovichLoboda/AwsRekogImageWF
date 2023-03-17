@@ -1,6 +1,9 @@
 using Amazon;
+using Amazon.Rekognition;
+using Amazon.Rekognition.Model;
 using Amazon.S3;
 using Amazon.S3.Model;
+
 namespace AwsRekogImageWF
 {
     public partial class Form1 : Form
@@ -25,13 +28,10 @@ namespace AwsRekogImageWF
 
                 if (openfiledialog.ShowDialog() == DialogResult.OK)
                 {
-                    //get the path of specified file
                     filePath = openfiledialog.FileName;
 
                     try
                     {
-                        
-                        // 2. Put the object-set ContentType and add metadata.
                         var putRequest2 = new PutObjectRequest
                         {
                             BucketName = bucketName,
@@ -43,6 +43,7 @@ namespace AwsRekogImageWF
                         putRequest2.Metadata.Add("x-amz-meta-title", "someTitle");
                         PutObjectResponse response2 = await client.PutObjectAsync(putRequest2);
                         MessageBox.Show("Uploaded!");
+                        btnShow_Click(sender, e);
                     }
                     catch (AmazonS3Exception ex)
                     {
@@ -60,6 +61,54 @@ namespace AwsRekogImageWF
         {
             listBoxFiles.Items.Clear();
             listBoxFiles.Items.AddRange(client.ListObjectsAsync(bucketName).Result.S3Objects.Select(item=>item.Key).ToArray());
+        }
+
+        private void btnAnalize_Click(object sender, EventArgs e)
+        {
+            if (listBoxFiles.SelectedIndex < 0) MessageBox.Show("Choose File From List!");
+            else
+            {
+                AmazonRekognitionClient rekClient = new AmazonRekognitionClient("AKIA344VMXIHI53J3UPT", "SmGmMBv4hKZhbIhvDK57ewOnKntKFhK87RDv03L4", Amazon.RegionEndpoint.EUCentral1);
+                DetectFacesRequest detectFacesRequest = new DetectFacesRequest()
+                {
+                    Image = new Amazon.Rekognition.Model.Image()
+                    {
+                        S3Object = new Amazon.Rekognition.Model.S3Object()
+                        {
+                            Name = listBoxFiles.SelectedItem.ToString(),
+                            Bucket = bucketName
+                        }
+                    },
+                    Attributes = new List<string>() { "ALL" }
+                };
+                try
+                {
+                    DetectFacesResponse detectFacesResponse = rekClient.DetectFacesAsync(detectFacesRequest).GetAwaiter().GetResult();
+                    string info = "";
+                    foreach (var item in detectFacesResponse.FaceDetails)
+                    {
+                        if (item != null) info += "Age = " + item.AgeRange.Low + " - " + item.AgeRange.High + " / " + "  Genger = " + item.Gender.Value.Value + "\n";
+                    }
+                    MessageBox.Show(info,"Analize");
+                }
+                catch(Exception ex) { MessageBox.Show(ex.Message, "Error"); }
+            }
+        }
+
+        private void btnDell_Click(object sender, EventArgs e)
+        {
+            if (listBoxFiles.SelectedIndex < 0) MessageBox.Show("Choose File From List!");
+            else
+            {
+                try
+                {
+                    client.DeleteObjectAsync(bucketName, listBoxFiles.SelectedItem.ToString());
+                    MessageBox.Show("Remuved!", "Mssage");
+                    btnShow_Click(sender, e);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "Error"); }
+                
+            }
         }
     }
 }
