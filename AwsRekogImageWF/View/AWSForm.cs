@@ -14,8 +14,8 @@ namespace AwsRekogImageWF.View
 {
     public partial class AWSForm : Form
     {
-        string accessKey = "AKIA344VMXIHI53J3UPT";
-        string secretKey = "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";
+        //string accessKey = "AKIA344VMXIHI53J3UPT";
+        //string secretKey = "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";
         public AWSForm()
         {
             InitializeComponent();
