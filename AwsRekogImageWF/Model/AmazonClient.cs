@@ -5,7 +5,6 @@ namespace AwsRekogImageWF.Model
 {
     public static class AmazonClient
     {
-        
         const string acessKey = "AKIA344VMXIHI53J3UPT";
         const string secretKey = "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";
         static Amazon.RegionEndpoint regionEndpoint = Amazon.RegionEndpoint.EUCentral1;

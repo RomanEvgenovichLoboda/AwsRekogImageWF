@@ -44,7 +44,9 @@ namespace AwsRekogImageWF.Controller
                 }
             }
         }
+
         public static string[] GetFilesNames() => AmazonClient.client.ListObjectsAsync(AmazonClient.bucketName).Result.S3Objects.Select(item => item.Key).ToArray();
+
         public static void RemuveFile(string file)
         {
             try
@@ -54,6 +56,7 @@ namespace AwsRekogImageWF.Controller
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
+
         public static void DetectFaces(string file)
         {
             DetectFacesRequest detectFacesRequest = new DetectFacesRequest()

@@ -1,8 +1,3 @@
-using Amazon;
-using Amazon.Rekognition;
-using Amazon.Rekognition.Model;
-using Amazon.S3;
-using Amazon.S3.Model;
 using AwsRekogImageWF.Controller;
 
 namespace AwsRekogImageWF
@@ -13,6 +8,7 @@ namespace AwsRekogImageWF
         {
             InitializeComponent();
         }
+
         private void ShowFiles(object sender, EventArgs e)
         {
             listBoxFiles.Items.Clear();
@@ -22,7 +18,7 @@ namespace AwsRekogImageWF
         private async void uploadButton_Click(object sender, EventArgs e)
         {
             AmazonClientController.UploadFile();
-            ShowFiles(sender, e);
+            await Task.Run(() => ShowFiles(sender, e));
         }
 
         private void btnAnalize_Click(object sender, EventArgs e)
