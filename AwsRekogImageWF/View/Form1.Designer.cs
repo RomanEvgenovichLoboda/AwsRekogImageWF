@@ -32,14 +32,14 @@
             listBoxFiles = new ListBox();
             btnAnalize = new Button();
             btnDell = new Button();
-            btnUpdateList = new Button();
+            panel1 = new Panel();
             SuspendLayout();
             // 
             // uploadButton
             // 
-            uploadButton.Location = new Point(282, 87);
+            uploadButton.Location = new Point(406, 12);
             uploadButton.Name = "uploadButton";
-            uploadButton.Size = new Size(94, 57);
+            uploadButton.Size = new Size(115, 53);
             uploadButton.TabIndex = 0;
             uploadButton.Text = "Upload Image";
             uploadButton.UseVisualStyleBackColor = true;
@@ -51,14 +51,15 @@
             listBoxFiles.ItemHeight = 20;
             listBoxFiles.Location = new Point(12, 12);
             listBoxFiles.Name = "listBoxFiles";
-            listBoxFiles.Size = new Size(249, 184);
+            listBoxFiles.Size = new Size(377, 164);
             listBoxFiles.TabIndex = 1;
+            listBoxFiles.DoubleClick += listBoxFiles_DoubleClick;
             // 
             // btnAnalize
             // 
-            btnAnalize.Location = new Point(282, 52);
+            btnAnalize.Location = new Point(406, 132);
             btnAnalize.Name = "btnAnalize";
-            btnAnalize.Size = new Size(94, 29);
+            btnAnalize.Size = new Size(115, 52);
             btnAnalize.TabIndex = 3;
             btnAnalize.Text = "Analize";
             btnAnalize.UseVisualStyleBackColor = true;
@@ -66,30 +67,28 @@
             // 
             // btnDell
             // 
-            btnDell.Location = new Point(282, 150);
+            btnDell.Location = new Point(406, 71);
             btnDell.Name = "btnDell";
-            btnDell.Size = new Size(94, 57);
+            btnDell.Size = new Size(115, 55);
             btnDell.TabIndex = 4;
             btnDell.Text = "Remuve Image";
             btnDell.UseVisualStyleBackColor = true;
             btnDell.Click += btnDell_Click;
             // 
-            // btnUpdateList
+            // panel1
             // 
-            btnUpdateList.Location = new Point(282, 12);
-            btnUpdateList.Name = "btnUpdateList";
-            btnUpdateList.Size = new Size(94, 29);
-            btnUpdateList.TabIndex = 5;
-            btnUpdateList.Text = "Show Files";
-            btnUpdateList.UseVisualStyleBackColor = true;
-            btnUpdateList.Click += ShowFiles;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Location = new Point(12, 204);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(540, 362);
+            panel1.TabIndex = 6;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(394, 219);
-            Controls.Add(btnUpdateList);
+            ClientSize = new Size(565, 579);
+            Controls.Add(panel1);
             Controls.Add(btnDell);
             Controls.Add(btnAnalize);
             Controls.Add(listBoxFiles);
@@ -97,6 +96,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             Text = "AWSBucket";
+            FormClosed += Form1_FormClosed;
             ResumeLayout(false);
         }
 
@@ -106,6 +106,6 @@
         private ListBox listBoxFiles;
         private Button btnAnalize;
         private Button btnDell;
-        private Button btnUpdateList;
+        public Panel panel1;
     }
 }
