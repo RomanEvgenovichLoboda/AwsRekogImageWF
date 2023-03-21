@@ -11,16 +11,16 @@ namespace AwsRekogImageWF
             ShowFiles();
         }
 
-        private void ShowFiles()
+        private async void ShowFiles()
         {
             listBoxFiles.Items.Clear();
             listBoxFiles.Items.AddRange(AmazonClientController.GetFilesNames());
         }
 
-        private async void uploadButton_Click(object sender, EventArgs e)
+        private void uploadButton_Click(object sender, EventArgs e)
         {
             AmazonClientController.UploadFile();
-            await Task.Run(() => ShowFiles());
+            ShowFiles();
         }
 
         private void btnAnalize_Click(object sender, EventArgs e)
@@ -59,6 +59,11 @@ namespace AwsRekogImageWF
                 catch { }
 
             }
+        }
+
+        private void btnUpdt_Click(object sender, EventArgs e)
+        {
+            ShowFiles();
         }
     }
 }

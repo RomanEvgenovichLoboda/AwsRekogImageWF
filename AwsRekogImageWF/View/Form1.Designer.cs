@@ -33,13 +33,14 @@
             btnAnalize = new Button();
             btnDell = new Button();
             panel1 = new Panel();
+            btnUpdt = new Button();
             SuspendLayout();
             // 
             // uploadButton
             // 
-            uploadButton.Location = new Point(406, 12);
+            uploadButton.Location = new Point(422, 12);
             uploadButton.Name = "uploadButton";
-            uploadButton.Size = new Size(115, 53);
+            uploadButton.Size = new Size(115, 69);
             uploadButton.TabIndex = 0;
             uploadButton.Text = "Upload Image";
             uploadButton.UseVisualStyleBackColor = true;
@@ -51,15 +52,15 @@
             listBoxFiles.ItemHeight = 20;
             listBoxFiles.Location = new Point(12, 12);
             listBoxFiles.Name = "listBoxFiles";
-            listBoxFiles.Size = new Size(377, 164);
+            listBoxFiles.Size = new Size(283, 164);
             listBoxFiles.TabIndex = 1;
             listBoxFiles.DoubleClick += listBoxFiles_DoubleClick;
             // 
             // btnAnalize
             // 
-            btnAnalize.Location = new Point(406, 132);
+            btnAnalize.Location = new Point(422, 105);
             btnAnalize.Name = "btnAnalize";
-            btnAnalize.Size = new Size(115, 52);
+            btnAnalize.Size = new Size(115, 71);
             btnAnalize.TabIndex = 3;
             btnAnalize.Text = "Analize";
             btnAnalize.UseVisualStyleBackColor = true;
@@ -67,9 +68,9 @@
             // 
             // btnDell
             // 
-            btnDell.Location = new Point(406, 71);
+            btnDell.Location = new Point(301, 12);
             btnDell.Name = "btnDell";
-            btnDell.Size = new Size(115, 55);
+            btnDell.Size = new Size(115, 69);
             btnDell.TabIndex = 4;
             btnDell.Text = "Remuve Image";
             btnDell.UseVisualStyleBackColor = true;
@@ -83,11 +84,22 @@
             panel1.Size = new Size(540, 362);
             panel1.TabIndex = 6;
             // 
+            // btnUpdt
+            // 
+            btnUpdt.Location = new Point(301, 105);
+            btnUpdt.Name = "btnUpdt";
+            btnUpdt.Size = new Size(115, 71);
+            btnUpdt.TabIndex = 7;
+            btnUpdt.Text = "Update List";
+            btnUpdt.UseVisualStyleBackColor = true;
+            btnUpdt.Click += btnUpdt_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(565, 579);
+            Controls.Add(btnUpdt);
             Controls.Add(panel1);
             Controls.Add(btnDell);
             Controls.Add(btnAnalize);
@@ -107,5 +119,6 @@
         private Button btnAnalize;
         private Button btnDell;
         public Panel panel1;
+        private Button btnUpdt;
     }
 }
