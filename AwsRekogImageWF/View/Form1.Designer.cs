@@ -96,7 +96,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             Text = "AWSBucket";
-            FormClosed += Form1_FormClosed;
+            Load += Form1_Load;
             ResumeLayout(false);
         }
 

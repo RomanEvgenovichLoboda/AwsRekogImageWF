@@ -12,7 +12,7 @@ namespace AwsRekogImageWF.Model
         public const string bucketName = "reml2bucket";
         public static IAmazonS3 client = new AmazonS3Client(acessKey, secretKey, regionEndpoint);
         public static AmazonRekognitionClient rekognitionClient = new AmazonRekognitionClient(acessKey, secretKey, regionEndpoint);
-        public static TransferUtility transferUtil = new TransferUtility(acessKey,secretKey, regionEndpoint);
+        //public static TransferUtility transferUtil = new TransferUtility(acessKey,secretKey, regionEndpoint);
 
     }
 }
